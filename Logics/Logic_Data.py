@@ -16,12 +16,14 @@ class DataProgram:
             # 新玩家
             self._current_player = PlayerData(name, 0, 0, True)
             print("欢迎新玩家:" + self._current_player.name)
+            return True
         else:
             self._current_player = PlayerData(name,
                                               self._get_data_from_str(current_player_data_in_file)[1],
                                               self._get_data_from_str(current_player_data_in_file)[2],
                                               False)
             self._before_game_dt_str = current_player_data_in_file
+            return False
         pass
 
     def set_current_player_mark(self, mark):

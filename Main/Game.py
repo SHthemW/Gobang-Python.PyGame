@@ -12,7 +12,6 @@ class Game:
 
     # properties
     game_running = True
-    player_name  = None
     turn_res = 0
 
     def __init__(self):
@@ -23,12 +22,16 @@ class Game:
 
     def startup(self):
         # init player data
-        self.data.set_player_name('SHW')
+        player_name = self.ui.show_input_box()
+        is_new = self.data.set_player_name(player_name)
+
         #  show main menu
         self.ui.show_main_menu(
             fn_pve=self._start_pve_game,
             fn_pvp=self._start_pvp_game,
-            fn_quit=self._quit_menu
+            fn_quit=self._quit_menu,
+            player_name=player_name,
+            is_new_player=is_new
         )
         pass
 
@@ -36,10 +39,12 @@ class Game:
         # init game program
         self.game.init_prop(True)
         self._start_game_loop()
+
     def _start_pve_game(self):
         # init game program
         self.game.init_prop(False)
         self._start_game_loop()
+
     def _start_game_loop(self):
         # hide menu
         self.ui.quit_main_menu()
