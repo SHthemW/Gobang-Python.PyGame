@@ -12,6 +12,7 @@ class Game:
 
     # properties
     game_running = True
+    player_name  = None
     turn_res = 0
 
     def __init__(self):
